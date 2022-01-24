@@ -17,7 +17,7 @@
 	else
 	{
 		$stmt = $conn->prepare("INSERT into Users (Login,Password,FirstName,LastName,DateCreated,DateLastLoggedIn) VALUES(?,?,?,?,?,?)");
-		$stmt->bind_param("ss", $Login, $Password, FirstName, LastName, DateCreated, DateLastLoggedIn);
+		$stmt->bind_param("ss", $Login, $Password, $FirstName, $LastName, $DateCreated, $DateLastLoggedIn);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
