@@ -18,6 +18,10 @@
 	{
 		$sql = "DELETE FROM contacts where id=?";
 		printf('Data deleted successfully');
+		$stmt->execute();
+		$stmt->close();
+		$conn->close();
+		returnWithError("");
 		
 	}	
 
