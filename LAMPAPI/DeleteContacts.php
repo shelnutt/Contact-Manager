@@ -16,7 +16,7 @@
 	} 
 	else 
 	{
-		$sql = "DELETE FROM contacts where id=1";
+		$sql = "DELETE FROM contacts where id=?";
 		printf('Data deleted successfully');
 		
 	}	
