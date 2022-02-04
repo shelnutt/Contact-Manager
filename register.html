@@ -14,24 +14,21 @@
 
 	<div class="container mt-3">
 		<h2>Register</h2>
-		<h3>Update 5:45</h3>
-			<div class="mb-3 mt-3">
-				<label for="firstName">First Name:</label>
-				<input type="text" id="firstName" placeholder="First Name" name="firstName">
+			<div class="mb-3 mt-3 w-25">
+				<input type="text" class="form-control" id="firstName" placeholder="First Name">
 			</div>
-			<div class="mb-3">
-				<label for="lastName">Last Name:</label>
-				<input type="text" id="lastName" placeholder="Last Name" name="lastName">
+			<div class="mb-3 w-25">
+				<input type="text" class="form-control" id="lastName" placeholder="Last Name">
 			</div>
-			<div class="mb-3">
-				<label for="loginName">Username:</label>
-				<input type="text" id="loginName" placeholder="Enter Username" name="loginName">
+			<div class="mb-3 w-25">
+				<input type="text" class="form-control" id="loginName" placeholder="Enter Username">
 			</div>
-			<div class="mb-3">
-				<label for="loginPassword">Password:</label>
-				<input type="password" id="loginPassword" placeholder="Enter Password" name="loginPassword">
+			<div class="mb-3 w-25">
+				<input type="password" class="form-control" id="loginPassword" placeholder="Enter Password">
 			</div>
-			<button type="submit" id="registerButton" class="btn btn-primary" onClick="register();">Register</button>
+			<button type="button" id="registerButton" class="btn btn-primary" onClick="register();">Register</button><br /><br />
+
+			<span id="loginResult"></span><br /><br />
 	</div>	
 
 </body>
