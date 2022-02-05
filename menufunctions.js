@@ -5,7 +5,6 @@ let userId = 0;
 
 function add()
 {
-	let UserId = 0;
 	let firstName = document.getElementById("firstName").value;
 	let lastName = document.getElementById("lastName").value;
 	let email = document.getElementById("email").value;
@@ -13,7 +12,7 @@ function add()
 
 	document.getElementById("addContactResult").innerHTML = "";
 
-	let temp = {userId:UserId,FirstName:firstName,LastName:lastName,Email:email,Phone:phone};
+	let temp = {UserId:userId,FirstName:firstName,LastName:lastName,Email:email,Phone:phone,userId,userId};
 	let jsonPayload = JSON.stringify(temp);
 
 	let url = urlBase + "/AddContact." + extension;
@@ -27,8 +26,7 @@ function add()
 		{
 			if(this.readyState == 4 && this.status == 200)
 			{
-				let jsonObject = JSON.parse(xhr.responseText);
-				UserId = jsonObject.id;
+				document.getElementById("addContactResult").innerHTML = "Contact has been added";
 				window.location.href = "menu.html";
 			}
 		};
