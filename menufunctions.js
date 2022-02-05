@@ -29,7 +29,7 @@ function add()
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
 				UserId = jsonObject.id;
-				window.location.href = "main.html";
+				window.location.href = "menu.html";
 			}
 		};
 		xhr.send(jsonPayload);
