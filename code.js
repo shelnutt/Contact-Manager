@@ -37,7 +37,7 @@ function doLogin()
 		
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					document.getElementById("loginResult").innerHTML = "Invalid user/password entered";
 					return;
 				}
 		
@@ -57,6 +57,40 @@ function doLogin()
 	}
 
 }
+
+function displayAll()
+{
+	var $table = $('#table');
+	let userId = document.getElementById("UserId").value;	
+	document.getElementById("displayContactsResult").innerHTML = "";
+	let tmp = {UserId:userId};
+	
+	let jsonPayload = JSON.stringify( tmp );
+	let url = urlBase + '/DisplayContacts.' + extension;
+		
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				var mydata = JSON.stringify(jsonObject);
+				$('#table').bootstrapTable({
+					data: mydata
+				});
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("displayContactsResult").innerHTML = err.message;
+	}
+}	
 
 function saveCookie()
 {
@@ -122,7 +156,7 @@ function add()
 	let temp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone,userId:userId};
 	let jsonPayload = JSON.stringify(temp);
 
-	let url = urlBase + "/AddContact." + extension;
+	let url = urlBase + '/AddContact.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -156,7 +190,7 @@ function search()
 	let temp = {search:srch,userId:userId};
 	let jsonPayload = JSON.stringify(temp);
 
-	let url = urlBase + "/SearchContact." + extension;
+	let url = urlBase + '/SearchContact.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -170,7 +204,7 @@ function search()
 				document.getElementById("contactSearchResult").innerHTML = "";
 				let jsonObject = JSON.parse(xhr.responseText);
 
-				const contactTable = document.getElementById("contactTable");
+				const contactTable = document.getElementById("table");
 				contactTable.innerHTML = "";
 				
 				if(jsonObject.results == null)
@@ -264,7 +298,7 @@ function edit()
 	let temp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone,userId:userId,ID:id};
 	let jsonPayload = JSON.stringify(temp);
 
-	let url = urlBase + "/UpdateContact." + extension;
+	let url = urlBase + '/UpdateContact.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);

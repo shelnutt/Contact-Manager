@@ -17,7 +17,7 @@ function add()
 	let temp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone,userId:userId};
 	let jsonPayload = JSON.stringify(temp);
 
-	let url = urlBase + "/AddContact." + extension;
+	let url = urlBase + '/AddContact.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -51,7 +51,7 @@ function search()
 	let temp = {search:srch,userId:userId};
 	let jsonPayload = JSON.stringify(temp);
 
-	let url = urlBase + "/SearchContact." + extension;
+	let url = urlBase + '/SearchContact.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -159,7 +159,7 @@ function edit()
 	let temp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone,userId:userId,ID:id};
 	let jsonPayload = JSON.stringify(temp);
 
-	let url = urlBase + "/UpdateContact." + extension;
+	let url = urlBase + '/UpdateContact.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
