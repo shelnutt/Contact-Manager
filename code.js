@@ -129,7 +129,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		//document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
@@ -153,7 +153,7 @@ function add()
 
 	document.getElementById("addContactResult").innerHTML = "";
 
-	let temp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone,userId:userId};
+	let temp = {UserId:userId,FirstName:firstName,LastName:lastName,Email:email,Phone:phone};
 	let jsonPayload = JSON.stringify(temp);
 
 	let url = urlBase + '/AddContact.' + extension;
@@ -187,7 +187,7 @@ function search()
 	document.getElementById("contactSearchResult").innerHTML = "";
 
 
-	let temp = {search:srch,userId:userId};
+	let temp = {search:srch,UserId:userId};
 	let jsonPayload = JSON.stringify(temp);
 
 	let url = urlBase + '/SearchContact.' + extension;
@@ -262,9 +262,9 @@ function search()
 					del.setAttribute("name", jsonObject.results[i].ID)
 
 					del.addEventListener('click', function() {
-						if (confirm('Are you sure you would like to remove this contact? It can not be undone.'))
+						if (confirm('Are you sure you would like to remove this contact?'))
 						{
-							delete(jsonObject.results[i].ID);
+							doDelete(jsonObject.results[i].ID);
 						}
 					});
 
@@ -291,11 +291,11 @@ function edit()
 	let lastName = document.getElementById("lastName").value;
 	let email = document.getElementById("email").value;
 	let phone = document.getElementById("phone").value;
-	let id = document.getElementById("contactId").value;
+	let id = document.getElementById("ID").value;
 
 	document.getElementById("updateContactResult").innerHTML = "";
 
-	let temp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone,userId:userId,ID:id};
+	let temp = {ID:id};
 	let jsonPayload = JSON.stringify(temp);
 
 	let url = urlBase + '/UpdateContact.' + extension;
@@ -322,9 +322,9 @@ function edit()
 	}	
 }
 
-function delete(id)
+function doDelete(id)
 {
-	let temp = {ID:id};
+	let temp = {ID:id,UserId:userId};
 	let jsonPayload = JSON.stringify(temp);
 
 	let url = urlBase + '/DeleteContact.' + extension;
