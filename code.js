@@ -187,7 +187,7 @@ function search()
 	document.getElementById("contactSearchResult").innerHTML = "";
 
 
-	let temp = {search:srch,UserId:userId};
+	let temp = {UserId:userId,search:srch};
 	let jsonPayload = JSON.stringify(temp);
 
 	let url = urlBase + '/SearchContact.' + extension;
