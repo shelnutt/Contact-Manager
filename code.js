@@ -194,7 +194,7 @@ function search()
         readCookie();
         console.log(userId);
 
-       // document.getElementById("searchResults").innerHTML = "";
+        document.getElementById("searchResults").innerHTML = "";
 
 
         let temp = {UserId:userId,search:srch};
@@ -211,7 +211,7 @@ function search()
                 {
                         if(this.readyState == 4 && this.status == 200)
                         {
-                               // document.getElementById("searchResults").innerHTML = "";
+                                document.getElementById("searchResults").innerHTML = "";
                                 let jsonObject = JSON.parse(xhr.responseText);
 
                                 const contactTable = document.getElementById("table");
