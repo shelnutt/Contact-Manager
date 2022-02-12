@@ -201,7 +201,7 @@ function search()
 		{
 			if(this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("contactSearchResult").innerHTML = "";
+				document.getElementById("searchResults").innerHTML = "";
 				let jsonObject = JSON.parse(xhr.responseText);
 
 				const contactTable = document.getElementById("table");
@@ -209,12 +209,12 @@ function search()
 				
 				if(jsonObject.results == null)
 				{
-					document.getElementById("contactSearchResult").innerHTML = "No contacts returned";
+					document.getElementById("searchResults").innerHTML = "No contacts returned";
 					return;
 				}
 				else
 				{
-					document.getElementById("contactSearchResult").innerHTML = jsonObject.results.length + "contacts matching your search.";
+					document.getElementById("searchResults").innerHTML = jsonObject.results.length + "contacts matching your search.";
 				}
 
 				for(let i=0; i<jsonObject.results.length; i++)
@@ -279,7 +279,7 @@ function search()
 	}
 	catch(err)
 	{
-		document.getElementById("contactSearchResult").innerHTML = err.message;
+		document.getElementById("searchResults").innerHTML = err.message;
 	}
 }
 
@@ -339,13 +339,13 @@ function doDelete(id)
 			if(this.readyState == 4 && this.status == 200)
 			{
 				search();
-				document.getElementById("contactSearchResult").innerHTML = "";
+				document.getElementById("searchResults").innerHTML = "";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("contactSearchResult").innerHTML = err.message
+		document.getElementById("searchResults").innerHTML = err.message
 	}
 }
