@@ -184,7 +184,7 @@ function search()
 	let srch = document.getElementById("searchText").value;
 	readCookie();
 	console.log(userId);
-	document.getElementById("contactSearchResult").innerHTML = "";
+	document.getElementById("searchResults").innerHTML = "";
 
 
 	let temp = {search:srch,UserId:userId};
