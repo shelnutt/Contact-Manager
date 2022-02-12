@@ -34,7 +34,8 @@
 		<span class="navbar-brand mb-0 h1">&emsp;Contact Man 4331</span>
 	</nav>
 	<div class="container">
-        <div class="row card d-flex justify-content-center mx-auto my-5">
+        
+		<div class="row card d-flex justify-content-center mx-auto my-5">
             <h3 id="inner-title" class='mt-3 ml-3 mr-3'>
                 Contact List
                 <button class='btn md-3 btn-primary float-right' title="Log Out" onclick="doLogout();"> <i class="gg-log-out"></i></button>
@@ -46,10 +47,11 @@
 			<span id="searchResults"> </span>
 			&emsp;
 			<div class="container mb-3">
-				<a type="button" id="addButton" class="btn btn-primary" href="addContact.html" target="popup" onclick="window.open('http://contactman4331.xyz/addContact.html','popup','width=600,height=600'); return false;">Add Contact</a>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Contact</button>
 				<button type="button" id="displayAll" class="btn btn-primary" onclick="displayAll();">Display All</button>
 			</div>
 		</div>
+		
 		<div class="jumbotron">
 			<table id="table" data-toggle="table">
                 <thead>
@@ -58,11 +60,44 @@
                         <th data-field="LastName">Last Name</th>
                         <th data-field="Phone">Phone Number</th>
                         <th data-field="Email">Email</th>
+						<th>Edit/Delete</th>
                     </tr>
                 </thead>
             </table><br>
 			<span id="tableResult">Testing</span><br>
 		</div>
-    </div>	
+    </div>
+	
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addModalLabel">Add Contact</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3 mt-3 w-75">
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                        </div>
+                        <div class="mb-3 w-75">
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                        </div>
+                        <div class="mb-3 w-75">
+                                <input type="text" class="form-control" id="phoneNumber" placeholder="xxx-xxx-xxxx">
+                        </div>
+                        <div class="mb-3 w-75">
+                                <input type="text" class="form-control" id="email" placeholder="example@email.com">
+                        </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" id="addButton" class="btn btn-primary" onClick="add();">Add to List</button><br>
+					<span id="addContactResult"></span>
+				</div>
+			</div>
+		</div>
+	</div>	
 </body>	
 </html>
