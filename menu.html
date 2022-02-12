@@ -15,6 +15,7 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="extensions/editable/bootstrap-table-editable.js"></script>
 
 		<link rel="stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href= "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
@@ -41,13 +42,14 @@
                 <button class='btn md-3 btn-primary float-right' title="Log Out" onclick="doLogout();"> <i class="gg-log-out"></i></button>
             </h3>
             <div class="input-group ml-3 w-50">
-                <button type="button" id="searchButton" class="btn btn-primary" onclick="search();"><i class="fa fa-search w3-large"></i></button>
+                <button type="button" id="searchButton" class="btn btn-primary" onclick="doSearch();"><i class="fa fa-search w3-large"></i></button>
                 <input type="text" id="searchText" placeholder="Search" class="form-control">
 			</div>
 			<span id="searchResults"> </span>
 			&emsp;
 			<div class="container mb-3">
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Contact</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Contact</button>&emsp;
+				<button type="button" id="doDelete" class="btn btn-primary" onclick="doDelete();">Delete Selected Item(s)</button>&emsp;
 				<button type="button" id="displayAll" class="btn btn-primary" onclick="displayAll();">Display All</button>
 			</div>
 		</div>
@@ -56,11 +58,11 @@
 			<table id="table" data-toggle="table">
                 <thead>
                     <tr>
+						<th data-checkbox="true"></th>
                         <th data-field="FirstName">First Name</th>
                         <th data-field="LastName">Last Name</th>
                         <th data-field="Phone">Phone Number</th>
                         <th data-field="Email">Email</th>
-						<th>Edit/Delete</th>
                     </tr>
                 </thead>
             </table><br>

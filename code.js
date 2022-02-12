@@ -188,7 +188,7 @@ function add()
         }
 }
 
-function search()
+function doSearch()
 {
         let srch = document.getElementById("searchText").value;
         readCookie();
@@ -211,78 +211,20 @@ function search()
                 {
                         if(this.readyState == 4 && this.status == 200)
                         {
-                                document.getElementById("searchResults").innerHTML = "";
-                                let jsonObject = JSON.parse(xhr.responseText);
-
-                                const contactTable = document.getElementById("table");
-                                contactTable.innerHTML = "";
-
-                                if(jsonObject.results == null)
+                                let jsonObject = JSON.parse( xhr.responseText );
+                                var mydata = JSON.stringify(jsonObject);
+                                // document.getElementById("tableResult").innerHTML = mydata;
+                                if(jsonObject == null)
                                 {
                                         document.getElementById("searchResults").innerHTML = "No contacts returned";
                                         return;
                                 }
                                 else
                                 {
-                                        document.getElementById("searchResults").innerHTML = jsonObject.results.length + "contacts matching your search.";
+                                        document.getElementById("searchResults").innerHTML = jsonObject.length + " contacts matching your search.";
                                 }
-
-                                for(let i=0; i<jsonObject.results.length; i++)
-                                {
-                                        const item = document.createElement("tr");
-                                        const fnameCOL = document.createElement("td");
-                                        const lnameCOL = document.createElement("td");
-                                        const phoneCOL = document.createElement("td");
-                                        const emailCOL = document.createElement("td");
-                                        const editCOL = document.createElement("td");
-                                        const delCOL = document.createElement("td");
-
-                                        fnameCOL.innerHTML = jsonObject.results[i].FirstName;
-                                        lnameCOL.innerHTML = jsonObject.results[i].LastName;
-                                        phoneCOL.innerHTML = jsonObject.results[i].Phone;
-                                        emailCOL.innerHTML = jsonObject.results[i].Email;
-
-                                        item.appendChild(fnameCOL);
-                                        item.appendChild(lnameCOL);
-                                        item.appendChild(phoneCOL);
-                                        item.appendChild(emailCOL);
-
-                                        const edit = document.createElement("a");
-                                        edit.innerHTML = "Edit";
-                                        edit.classList.add("btn");
-                                        edit.classList.add("btn-primary");
-                                        //edit.classList.add("mt-3");
-                                        edit.setAttribute("name", jsonObject.results[i].ID)
-
-                                        edit.addEventListener('click', function() {
-                                                var params = new URLSearchParams();
-                                                params.append("contact", JSON.stringify(jsonObject.results[i]));
-
-                                                window.location.href = "editContact.html" + params.toString();
-                                        });
-
-                                        editCOL.appendChild(edit);
-                                        item.appendChild(editCOL);
-
-                                        const del = document.createElement("a");
-                                        del.innerHTML = "Delete";
-                                        del.classList.add("btn");
-                                        del.classList.add("btn-outline-danger");
-                                        //del.classList.add("mt-3");
-                                        del.setAttribute("name", jsonObject.results[i].ID)
-
-                                        del.addEventListener('click', function() {
-                                                if (confirm('Are you sure you would like to remove this contact?'))
-                                                {
-                                                        doDelete(jsonObject.results[i].ID);
-                                                }
-                                        });
-
-                                        delCOL.appendChild(del);
-                                        item.appendChild(delCOL);
-
-                                        contactsTable.appendChild(item);
-                                }
+                                $('#table').bootstrapTable('load', jsonObject);
+                                
                         }
                 };
                 xhr.send(jsonPayload);
@@ -348,7 +290,7 @@ function doDelete(id)
                 {
                         if(this.readyState == 4 && this.status == 200)
                         {
-                                search();
+                                //search();
                                 document.getElementById("searchResults").innerHTML = "";
                         }
                 };
