@@ -235,7 +235,7 @@ function doSearch()
         }
 }
 
-function edit()
+function doUpdate()
 {
         readCookie();
 
@@ -252,9 +252,15 @@ function edit()
         let email = document.getElementById("email").value;
         let phone = document.getElementById("phoneNumber").value;
 
+        //let firstName = selectedObject.FirstName;
+        //let lastName = selectedObject.LastName;
+        //let email = selectedObject.Email;
+        //let phone = selectedObject.Phone;
+
         document.getElementById("updateContactResult").innerHTML = "";
 
         let temp = {ID:id,UserId:userId,FirstName:firstName,LastName:lastName,Email:email,Phone:phone};
+        console.log(temp);
         let jsonPayload = JSON.stringify(temp);
 
         let url = urlBase + '/UpdateContact.' + extension;
@@ -270,7 +276,7 @@ function edit()
                         {
                                 //let jsonObject = JSON.parse(xhr.responseText);
                                 document.getElementById("updateContactResult").innerHTML = "Contact has been updated";
-                                window.location.href = "menu.html";
+                                //window.location.href = "menu.html";
                         }
                 };
                 xhr.send(jsonPayload);

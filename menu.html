@@ -54,19 +54,19 @@
 			<div class="container mb-3">
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Contact</button>&emsp;
 				<button type="button" id="doDelete" class="btn btn-primary" onclick="doDelete();">Delete Selected Item</button>&emsp;
-				<button type="button" onclick="populateEditModal();" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit Selected Contact</button>&emsp;
+				<button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit Selected Contact</button>&emsp;
 			</div>
 		</div>
 		
 		<div class="jumbotron">
-			<table id="table" data-toggle="table">
+			<table id="table" data-toggle="table" data-editable="true">
                 <thead>
                     <tr>
 						<th data-radio="true"></th>
-                        <th data-field="FirstName">First Name</th>
-                        <th data-field="LastName">Last Name</th>
-                        <th data-field="Phone">Phone Number</th>
-                        <th data-field="Email">Email</th>
+                        <th data-field="FirstName" data-editable="true">First Name</th>
+                        <th data-field="LastName" data-editable="true">Last Name</th>
+                        <th data-field="Phone" data-editable="true">Phone Number</th>
+                        <th data-field="Email" data-editable="true">Email</th>
                     </tr>
                 </thead>
             </table><br>
@@ -117,21 +117,21 @@
 				</div>
 				<div class="modal-body">
 					<div class="mb-3 mt-3 w-75">
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" value="First">
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name">
                         </div>
                         <div class="mb-3 w-75">
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" value="Last">
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
                         </div>
                         <div class="mb-3 w-75">
-                                <input type="text" class="form-control" id="phoneNumber" placeholder="xxx-xxx-xxxx" value="Phone">
+                                <input type="text" class="form-control" id="phoneNumber" placeholder="xxx-xxx-xxxx">
                         </div>
                         <div class="mb-3 w-75">
-                                <input type="text" class="form-control" id="email" placeholder="example@email.com" value="Email">
+                                <input type="text" class="form-control" id="email" placeholder="example@email.com">
                         </div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" id="editButton" class="btn btn-primary" onClick="edit();">Update Contact</button>
+					<button type="button" id="editButton" class="btn btn-primary" onClick="doUpdate();">Update Contact</button>
 					<span id="updateContactResult"></span>
 				</div>
 			</div>
