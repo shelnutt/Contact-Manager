@@ -123,34 +123,19 @@
                                 <input type="text" class="form-control" id="lastName" placeholder="Last Name" value="Last">
                         </div>
                         <div class="mb-3 w-75">
-                                <input type="text" class="form-control" id="phone" placeholder="xxx-xxx-xxxx" value="xxx-xxx-xxxx">
+                                <input type="text" class="form-control" id="phone" placeholder="xxx-xxx-xxxx" value="Phone">
                         </div>
                         <div class="mb-3 w-75">
-                                <input type="text" class="form-control" id="email" placeholder="example@email.com" value="example@email.com">
+                                <input type="text" class="form-control" id="email" placeholder="example@email.com" value="Email">
                         </div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" id="addButton" class="btn btn-primary" onClick="add();">Update Contact</button>
+					<button type="button" id="editButton" class="btn btn-primary" onClick="edit();">Update Contact</button>
+					<span id="updateContactResult"></span>
 				</div>
 			</div>
 		</div>
 	</div>	
-
-    <script>
-        populateEditModal(){
-            let selectedObject = $("#table").bootstrapTable('getSelections');
-			let jsonString = JSON.stringify(selectedObject);
-			jsonString = jsonString.replace('[{','{');
-			jsonString = jsonString.replace('}]','}');
-            let obj = JSON.parse(jsonString);
-
-            document.getElementById('firstName').value = obj.FirstName;
-            document.getElementById('lastName').value = obj.LastName;
-            document.getElementById('email').value = obj.Email;
-            document.getElementById('phone').value = obj.Phone;
-            document.getElementById('id').value = obj.ID;
-        };
-    </script>
 </body>	
 </html>

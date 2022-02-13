@@ -254,7 +254,7 @@ function edit()
 
         document.getElementById("updateContactResult").innerHTML = "";
 
-        let temp = {};
+        let temp = {ID:id,UserId:userId,FirstName:firstName,LastName:lastName,Phone:phone,Email:email};
         let jsonPayload = JSON.stringify(temp);
 
         let url = urlBase + '/UpdateContact.' + extension;
@@ -320,3 +320,18 @@ function doDelete()
                 document.getElementById("searchResults").innerHTML = err.message
         }
 }
+
+function populateEditModal()
+{
+let selectedObject = $("#table").bootstrapTable('getSelections');
+        let jsonString = JSON.stringify(selectedObject);
+        jsonString = jsonString.replace('[{','{');
+        jsonString = jsonString.replace('}]','}');
+let obj = JSON.parse(jsonString);
+
+let First = obj.FirstName;
+let Last = obj.LastName;
+let Email = obj.Email;
+let Phone = obj.Phone;
+let id = obj.ID;
+};
