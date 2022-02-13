@@ -68,6 +68,15 @@
                         <th data-field="Email">Email</th>
                     </tr>
                 </thead>
+				<tbody>
+					@foreach (System.Data.DataRow row in Model.Rows)
+					{
+						<tr>
+							<td><button> class="btn btn-primary">Edit</button></td>
+							<td><button> class="btn btn-danger">Delete</button></td>
+						</tr>
+					}
+				</tbody>
             </table><br>
 			<span id="tableResult"> </span><br>
 		</div>
