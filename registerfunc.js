@@ -31,7 +31,7 @@ function register()
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
 				userId = jsonObject.id;
-				window.location.href = "index.html";
+				alert("Registration Successful");window.location.href = "index.html";
 			}
 		};
 		xhr.send(jsonPayload);
