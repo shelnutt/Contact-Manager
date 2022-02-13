@@ -268,7 +268,7 @@ function edit()
                 {
                         if(this.readyState == 4 && this.status == 200)
                         {
-                                let jsonObject = JSON.parse(xhr.responseText);
+                                //let jsonObject = JSON.parse(xhr.responseText);
                                 document.getElementById("updateContactResult").innerHTML = "Contact has been updated";
                                 window.location.href = "menu.html";
                         }
@@ -307,7 +307,7 @@ function doDelete()
                 {
                         if(this.readyState == 4 && this.status == 200)
                         {
-                                let jsonObject = JSON.parse( xhr.responseText );
+                                //let jsonObject = JSON.parse( xhr.responseText );
 								document.getElementById("searchResults").innerHTML = "Contact deleted from list";
 								$('#table').bootstrapTable('load', jsonObject);
 								displayAll();
