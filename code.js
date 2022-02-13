@@ -214,16 +214,17 @@ function doSearch()
                                 let jsonObject = JSON.parse( xhr.responseText );
                                 var mydata = JSON.stringify(jsonObject);
                                 // document.getElementById("tableResult").innerHTML = mydata;
-                                if(jsonObject == null)
+                                if(jsonObject == null || jsonObject.length == undefined)
                                 {
-                                        document.getElementById("searchResults").innerHTML = "No contacts returned";
+                                        document.getElementById("searchResults").innerHTML = "No contacts matched the search criteria.";
+										$('#table').bootstrapTable('removeAll');
                                         return;
                                 }
                                 else
                                 {
-                                        document.getElementById("searchResults").innerHTML = jsonObject.length + " contacts matching your search.";
+                                        document.getElementById("searchResults").innerHTML = jsonObject.length + " contact(s) matching your search.";
+										$('#table').bootstrapTable('load', jsonObject);
                                 }
-                                $('#table').bootstrapTable('load', jsonObject);
 
                         }
                 };
@@ -314,9 +315,7 @@ function doDelete()
                         if(this.readyState == 4 && this.status == 200)
                         {
                                 //let jsonObject = JSON.parse( xhr.responseText );
-				document.getElementById("searchResults").innerHTML = "Contact deleted from list";
-				$('#table').bootstrapTable('load', jsonObject);
-				displayAll();
+								document.getElementById("searchResults").innerHTML = "Contact deleted from list";
                         }
                 };
                 xhr.send(jsonPayload);
@@ -325,6 +324,8 @@ function doDelete()
         {
                 document.getElementById("searchResults").innerHTML = err.message
         }
+		
+		displayAll();
 }
 
 function populateEditModal()

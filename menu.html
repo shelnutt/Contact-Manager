@@ -29,50 +29,60 @@
 		</script>
 
 </head>
-
-<body>
+<style> 
+    body 
+    { 
+      background-color:rgb(51, 51, 51); 
+      font-family: Impact, sans-serif;
+    }
+    nav
+    {
+        background-image:url('pacmangif.gif'); 
+        background-position: right;
+    }
+    .outline
+    {
+        color: white;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+    </style>
+<body onload="displayAll();">
 	<nav class="navbar navbar-dark bg-primary">
-		<span class="navbar-brand mb-0 h1">&emsp;Contact Man 4331</span>
+		<span class="navbar-brand mb-0 h1 outline" style="font-size: 50px">&emsp;TacMan</span>
 	</nav>
 	<div class="container">
-        
 		<div class="row card d-flex justify-content-center mx-auto my-5">
-            <h3 id="inner-title" class='mt-3 ml-3 mr-3'>
-                Contact List
-                <button class='btn md-3 btn-primary float-right' title="Log Out" onclick="doLogout();"> <i class="gg-log-out"></i></button>
-            </h3>
+            <h3 style="font-family: Impact, sans-serif" id="inner-title" class='mt-3 ml-3 mr-3'>
+				Contact List
+				<button class='btn md-3 btn-outline-dark float-right' title="Log Out" onclick="doLogout();"> <i class="gg-log-out"></i></button>
+			</h3>
             <div class="input-group ml-3 w-50">
                 <button type="button" id="searchButton" class="btn btn-primary" onclick="doSearch();"><i class="fa fa-search w3-large"></i></button>
                 <input type="text" id="searchText" placeholder="Search" class="form-control">
 			</div>
-			
-			<div class="container ml-1 mt-3"
-				<span id="searchResults"> </span>
-			</div>
-			
+			<span id="searchResults"> </span>
 			&emsp;
 			<div class="container mb-3">
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Contact</button>&emsp;
-				<button type="button" id="doDelete" class="btn btn-primary" onclick="doDelete();">Delete Selected Item</button>&emsp;
-				<button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit Selected Contact</button>&emsp;
+				<button style="background-color:#d8330a;" type="button" id="doDelete" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">Delete Selected Item(s)</button>&emsp;
+                <button style="background-color:#e27e04;" type="button" id="edit" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit Contact</button>&emsp;
 			</div>
 		</div>
 		
 		<div class="jumbotron">
 			<table id="table" data-toggle="table" data-editable="true">
-                <thead>
-                    <tr>
-						<th data-radio="true"></th>
-                        <th data-field="FirstName" data-editable="true">First Name</th>
-                        <th data-field="LastName" data-editable="true">Last Name</th>
-                        <th data-field="Phone" data-editable="true">Phone Number</th>
-                        <th data-field="Email" data-editable="true">Email</th>
-                    </tr>
-                </thead>
-            </table><br>
+	<thead>
+		<tr>
+			<th data-radio="true"></th>
+			<th data-field="FirstName" data-editable="true">First Name</th>
+			<th data-field="LastName" data-editable="true">Last Name</th>
+			<th data-field="Phone" data-editable="true">Phone Number</th>
+			<th data-field="Email" data-editable="true">Email</th>
+		</tr>
+	</thead>
+</table><br>
 			<span id="tableResult"> </span><br>
-		</div>
-    </div>
+	</div>
 	
 	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -85,7 +95,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="mb-3 mt-3 w-75">
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                         </div>
                         <div class="mb-3 w-75">
                                 <input type="text" class="form-control" id="lastName" placeholder="Last Name">
@@ -99,25 +109,25 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" id="addButton" class="btn btn-primary" onClick="add();">Add to List</button><br>
+					<button type="button" id="addButton" class="btn btn-primary" onClick="add();">Add Contact</button><br>
 					<span id="addContactResult"></span>
 				</div>
 			</div>
 		</div>
 	</div>	
 
-	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="editModalLabel">Update Contact</h5>
+					<h5 class="modal-title" id="editModalLabel">Edit Contact</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<div class="mb-3 mt-3 w-75">
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                         </div>
                         <div class="mb-3 w-75">
                                 <input type="text" class="form-control" id="lastName" placeholder="Last Name">
@@ -131,8 +141,29 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" id="editButton" class="btn btn-primary" onClick="doUpdate();">Update Contact</button>
+					<button type="button" id="editButton" class="btn btn-primary" onClick="doUpdate();">Done</button><br>
 					<span id="updateContactResult"></span>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editModalLabel">Delete Contact</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Are you sure you want to delete?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" id="editButton" class="btn btn-primary" onClick="doDelete();">Delete Contact</button><br>
+					<span id="searchResults"></span>
 				</div>
 			</div>
 		</div>
