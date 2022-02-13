@@ -54,6 +54,7 @@
 			<div class="container mb-3">
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Contact</button>&emsp;
 				<button type="button" id="doDelete" class="btn btn-primary" onclick="doDelete();">Delete Selected Item</button>&emsp;
+				<button type="button" onclick="populateEditModal();" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit Selected Contact</button>&emsp;
 			</div>
 		</div>
 		
@@ -68,15 +69,6 @@
                         <th data-field="Email">Email</th>
                     </tr>
                 </thead>
-				<tbody>
-					@foreach (System.Data.DataRow row in Model.Rows)
-					{
-						<tr>
-							<td><button> class="btn btn-primary">Edit</button></td>
-							<td><button> class="btn btn-danger">Delete</button></td>
-						</tr>
-					}
-				</tbody>
             </table><br>
 			<span id="tableResult"> </span><br>
 		</div>
@@ -113,5 +105,52 @@
 			</div>
 		</div>
 	</div>	
+
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editModalLabel">Update Contact</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3 mt-3 w-75">
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name" value="First">
+                        </div>
+                        <div class="mb-3 w-75">
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" value="Last">
+                        </div>
+                        <div class="mb-3 w-75">
+                                <input type="text" class="form-control" id="phone" placeholder="xxx-xxx-xxxx" value="xxx-xxx-xxxx">
+                        </div>
+                        <div class="mb-3 w-75">
+                                <input type="text" class="form-control" id="email" placeholder="example@email.com" value="example@email.com">
+                        </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" id="addButton" class="btn btn-primary" onClick="add();">Update Contact</button>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+    <script>
+        populateEditModal(){
+            let selectedObject = $("#table").bootstrapTable('getSelections');
+			let jsonString = JSON.stringify(selectedObject);
+			jsonString = jsonString.replace('[{','{');
+			jsonString = jsonString.replace('}]','}');
+            let obj = JSON.parse(jsonString);
+
+            document.getElementById('firstName').value = obj.FirstName;
+            document.getElementById('lastName').value = obj.LastName;
+            document.getElementById('email').value = obj.Email;
+            document.getElementById('phone').value = obj.Phone;
+            document.getElementById('id').value = obj.ID;
+        };
+    </script>
 </body>	
 </html>
