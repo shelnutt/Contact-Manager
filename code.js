@@ -247,14 +247,14 @@ function edit()
 		
 	selectedObject = JSON.parse(jsonString);
 	let id = selectedObject.ID;
-        let firstName = selectedObject.FirstName;
-        let lastName = selectedObject.LastName
-        let email = selectedObject.Email
-        let phone = selectedObject.Phone
+        let firstName = document.getElementById("firstName").value;
+        let lastName = document.getElementById("lastName").value;
+        let email = document.getElementById("email").value;
+        let phone = document.getElementById("phoneNumber").value;
 
         document.getElementById("updateContactResult").innerHTML = "";
 
-        let temp = {ID:id,UserId:userId,FirstName:firstName,LastName:lastName,Phone:phone,Email:email};
+        let temp = {ID:id,UserId:userId,FirstName:firstName,LastName:lastName,Email:email,Phone:phone};
         let jsonPayload = JSON.stringify(temp);
 
         let url = urlBase + '/UpdateContact.' + extension;
