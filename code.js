@@ -274,30 +274,35 @@ function edit()
         }
 }
 
-function doDelete(id)
+function doDelete()
 {
-        let temp = {ID:id,UserId:userId};
-        let jsonPayload = JSON.stringify(temp);
-
-        let url = urlBase + '/DeleteContact.' + extension;
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        try
+        if(confirm("Are you sure you would like to delete this contact(s)?"))
         {
-                xhr.onreadystatechange = function()
+                let id = document.getElementById("ID").value;
+                let temp = {ID:id,UserId:userId};
+                let jsonPayload = JSON.stringify(temp);
+
+                let url = urlBase + '/DeleteContact.' + extension;
+
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+                try
                 {
-                        if(this.readyState == 4 && this.status == 200)
+                        xhr.onreadystatechange = function()
                         {
-                                //search();
-                                document.getElementById("searchResults").innerHTML = "";
-                        }
-                };
-                xhr.send(jsonPayload);
+                                if(this.readyState == 4 && this.status == 200)
+                                {
+                                        //search();
+                                        document.getElementById("searchResults").innerHTML = "";
+                                }
+                        };
+                        xhr.send(jsonPayload);
+                }
+                catch(err)
+                {
+                        document.getElementById("searchResults").innerHTML = err.message
+                }
         }
-        catch(err)
-        {
-                document.getElementById("searchResults").innerHTML = err.message
-        }
+        
 }
