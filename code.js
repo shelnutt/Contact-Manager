@@ -77,9 +77,9 @@ function displayAll()
                         if (this.readyState == 4 && this.status == 200)
                         {
                                 let jsonObject = JSON.parse( xhr.responseText );
-                                                                var mydata = JSON.stringify(jsonObject);
-                                                                // document.getElementById("tableResult").innerHTML = mydata;
-                                                                if(jsonObject == null)
+                                var mydata = JSON.stringify(jsonObject);
+                                // document.getElementById("tableResult").innerHTML = mydata;
+                                if(jsonObject == null)
                                 {
                                         document.getElementById("tableResult").innerHTML = "No contacts returned";
                                         return;
@@ -88,7 +88,7 @@ function displayAll()
                                 {
                                         document.getElementById("tableResult").innerHTML = jsonObject.length + " contacts matching your search.";
                                 }
-                                                                $('#table').bootstrapTable('load', jsonObject);
+                                $('#table').bootstrapTable('load', jsonObject);
 
 
                         }
@@ -308,9 +308,9 @@ function doDelete()
                         if(this.readyState == 4 && this.status == 200)
                         {
                                 //let jsonObject = JSON.parse( xhr.responseText );
-								document.getElementById("searchResults").innerHTML = "Contact deleted from list";
-								$('#table').bootstrapTable('load', jsonObject);
-								displayAll();
+				document.getElementById("searchResults").innerHTML = "Contact deleted from list";
+				$('#table').bootstrapTable('load', jsonObject);
+				displayAll();
                         }
                 };
                 xhr.send(jsonPayload);
