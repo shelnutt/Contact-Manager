@@ -326,6 +326,7 @@ function doDelete()
         }
 		
 		displayAll();
+                window.location.href = "menu.html"
 }
 
 function populateEditModal()
