@@ -28,16 +28,16 @@
 
 		    <h2>Register</h2>
 			<div class="form-outline form-white mb-4">
-				<input type="text" class="form-control" id="firstName" placeholder="First Name">
+				<input type="text" class="form-control" id="firstName" placeholder="First Name" required oninvalid="Please Enter a First Name">
 			</div>
 			<div class="form-outline form-white mb-4">
-				<input type="text" class="form-control" id="lastName" placeholder="Last Name">
+				<input type="text" class="form-control" id="lastName" placeholder="Last Name" required oninvalid="Please Enter a Last Name">
 			</div>
 			<div class="form-outline form-white mb-4">
-				<input type="text" class="form-control" id="loginName" placeholder="Enter Username">
+				<input type="text" class="form-control" id="loginName" placeholder="Enter Username" required oninvalid="Please Enter a Username">
 			</div>
 			<div class="form-outline form-white mb-4">
-				<input type="password" class="form-control" id="loginPassword" placeholder="Enter Password">
+				<input type="password" class="form-control" id="loginPassword" placeholder="Enter Password" required oninvalid="Please Enter a Password">
 			</div>
 			<button type="button" id="registerButton" class="btn btn-primary" onClick="register();">Register</button>
 			<span id="loginResult"></span>
